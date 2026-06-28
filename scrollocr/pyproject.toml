@@ -1,0 +1,26 @@
+[project]
+name = "scrollocr"
+version = "0.1.0"
+description = "滚动屏幕内容抓取 + OCR 文字识别工具"
+requires-python = ">=3.10"
+dependencies = [
+    "pillow>=10.0.0",
+    "numpy>=1.24.0",
+]
+
+[project.optional-dependencies]
+ocr = ["pytesseract>=0.3.10"]
+ssim = ["scikit-image>=0.20.0"]
+full = ["pytesseract>=0.3.10", "scikit-image>=0.20.0"]
+
+[project.scripts]
+scrollocr = "scrollocr.cli:main"
+
+
+[tool.ruff.lint]
+ignore = [
+    "F401",  # allow unused imports in try/except guards (optional deps)
+]
+
+[tool.ruff.lint.per-file-ignores]
+"align.py" = ["F401"]  # skimage import is guarded by try/except
